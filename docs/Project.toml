@@ -1,0 +1,7 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+FFTLog = "a00cc2bc-8b4a-4b7f-b12a-0794eb62aad9"
+FFTW = "7a1cc6ca-52ef-59f5-83cd-3a7055c09341"
+PlotThemes = "ccf2f8ad-2431-5c83-bf29-c5338b663b6a"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
