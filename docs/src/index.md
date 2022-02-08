@@ -1,6 +1,6 @@
 # FFTLog.jl
 
-FFTLog is a Julia package to perform integrals involving Bessel functions, such as
+FFTLog is a Julia package which performs integrals involving Bessel functions, such as
 
 ```math
 F(y)=\int_{0}^{\infty} \frac{d x}{x} f(x) j_{\ell}(x y)\, ,
