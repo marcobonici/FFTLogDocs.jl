@@ -1,2 +1,7 @@
+name = "FFTLogDocs"
+uuid = "1ba82336-88fc-4499-9ff1-0b0e587010d6"
+authors = ["marcobonici <bonici.marco@gmail.com>"]
+version = "0.1.0"
+
 [deps]
 FFTLog = "a00cc2bc-8b4a-4b7f-b12a-0794eb62aad9"
