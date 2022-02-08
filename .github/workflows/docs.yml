@@ -19,9 +19,7 @@ jobs:
         with:
           version: '1.7'
       - run: >
-          sudo apt-get install --no-install-recommends gfortran python3-setuptools python3-wheel
-          && pip3 install numpy && pip3 install Cython && pip3 install classy
-          && pip3 install matplotlib && julia --project=docs/ -e 'using Pkg; Pkg.add(url = "https://github.com/marcobonici/CosmoCentral.jl"); Pkg.instantiate()'
+          julia --project=docs/ -e 'using Pkg; Pkg.add(url = "https://github.com/marcobonici/FFTLog.jl"); Pkg.instantiate()'
       - name: Install dependencies
         run: julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
       - name: Build and deploy
