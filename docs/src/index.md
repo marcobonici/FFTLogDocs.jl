@@ -13,14 +13,13 @@ F(y)=\int_{0}^{\infty} \mathrm{d}x f(x) J_{n}(x y)\, .
 ```
 
 Actually
-it can evaluate:
+it can handle:
 
 - Integrals with a Bessel function
-- Hankel transforms
 - Integrals with a Bessel derivative
+- Hankel transforms
 
 In our roadmap, we aim to include also:
-- Evaluation of ``C_{ℓ}``'s beyond Limber approximation (WIP)
 - Automatic Differentiation
 - GPU compatibility
 - Integrals with multiple Bessel functions
@@ -31,7 +30,6 @@ In our roadmap, we aim to include also:
 ### Authors
 
 - Marco Bonici, INAF - Institute of Space Astrophysics and Cosmic Physics (IASF), Milano
-- Carmelita Carbone, INAF - Institute of Space Astrophysics and Cosmic Physics (IASF), Milano
 
 
 ## Usage
