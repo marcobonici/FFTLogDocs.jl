@@ -9,7 +9,7 @@ ENV["GKSwstype"] = "100"
 push!(LOAD_PATH,"../src/")
 
 makedocs(
-    modules = [FFTLog],
+    modules = [FFTLog, FFTLog],
     format = Documenter.HTML(prettyurls = get(ENV, "CI", nothing) == "true",
     sidebar_sitename=true),
     sitename = "FFTLog.jl",
@@ -21,6 +21,6 @@ makedocs(
 )
 
 deploydocs(
-    repo = "github.com/marcobonici/FFTLog.jl.git",
+    repo = "github.com/marcobonici/FFTLogDocs.jl.git",
     devbranch = "main"
 )
