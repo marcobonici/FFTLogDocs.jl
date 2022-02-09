@@ -80,8 +80,38 @@ g_{\ell}(z)=2^{z} \frac{\Gamma\left(\frac{\ell+z}{2}\right)}{\Gamma\left(\frac{3
 giving the range of bias index ``-\ell<\nu<2``.
 
 
-Finally, assuming that ``y`` is logarithmically sampled with the same linear spacing ``\Delta \ln y = \Delta x`` in ln y, we can write the last summation as
+Finally, assuming that ``y`` is logarithmically sampled with the same linear spacing ``\Delta \ln y = \Delta x`` in ``\ln y``, we can write the last summation as
 
 ```math
 F\left(y_{p}\right)=\frac{\sqrt{\pi}}{4 y_{p}^{\nu}} \operatorname{IFFT}\left[c_{m}^{*}\left(x_{0} y_{0}\right)^{i \eta_{m}} g_{\ell}\left(\nu-i \eta_{m}\right)\right]
+```
+
+For ``n > 0`` (i.e. an integral containing a Bessel derivative), following the same procedure of power-law decomposition, we have
+
+```math
+F_{n}(y)=\frac{1}{N y^{\nu}} \sum_{m=-N / 2}^{N / 2} c_{m} x_{0}^{-i \eta_{m}} y^{-i \eta_{m}} \int_{0}^{\infty} \frac{d x}{x} x^{\nu+i \eta_{m}} j_{\ell}^{(n)}(x)
+```
+
+Again, the integral for each m has an analytic solution, which can be shown with integration by parts. We write the solution
+in the same form with the FFTLog, i.e.,
+
+```math
+F_{n}\left(y_{p}\right)=\frac{\sqrt{\pi}}{4 y_{p}^{\nu}} \operatorname{IFFT}\left[c_{m}^{*}\left(x_{0} y_{0}\right)^{i \eta_{m}} \tilde{g}_{\ell}\left(n, \nu-i \eta_{m}\right)\right]
+```
+where
+
+```math
+\tilde{g}_{\ell}(1, z)=-2^{z-1}(z-1) \frac{\Gamma\left(\frac{\ell+z-1}{2}\right)}{\Gamma\left(\frac{4+\ell-z}{2}\right)}, \quad\left(\begin{array}{ll}
+0<\Re(z)<2, & \text { for } \ell=0 \\
+1-\ell<\Re(z)<2, & \text { for } \ell \geq 1
+\end{array}\right)
+```
+
+and
+
+```math
+\tilde{g}_{\ell}(2, z)=2^{z-2}(z-1)(z-2) \frac{\Gamma\left(\frac{\ell+z-2}{2}\right)}{\Gamma\left(\frac{5+\ell-z}{2}\right)},\left(\begin{array}{ll}
+-\ell<\Re(z)<2, & \text { for } \ell=0,1 \\
+2-\ell<\Re(z)<2, & \text { for } \ell \geq 2
+\end{array}\right)
 ```
