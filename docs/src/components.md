@@ -13,14 +13,14 @@ function F(r, a=1)
     return exp(- r^2.0 / (2. *a^2))
 end
 
-function LogSpaced(min::T, max::T, n::I) where {T,I}
+function log_space(min::T, max::T, n::I) where {T,I}
     logmin = log10(min)
     logmax = log10(max)
     logarray = Array(LinRange(logmin, logmax, n))
     return exp10.(logarray)
 end
 
-k = LogSpaced(10^(-5), 10., 2^10)
+k = log_space(10^(-5), 10., 2^10)
 fk = f.(k)
 Ell = Array([0., 2.])
 
@@ -149,6 +149,8 @@ F_{0}(r)=\int_{0}^{\infty} e^{-\frac{1}{2} a^{2} k^{2}} J_{0}(k r) k \mathrm{~d}
 Since we know the analytical transform, we can perform a check
 
 ```@example tutorial
+k = log_space(10^(-5), 10., 2^10)
+Ell = Array(LinRange(0., 100, 100))
 HankelTest = FFTLog.HankelPlan(x = k, n_extrap_low = 1500, ν=1.01, n_extrap_high = 1500, n_pad = 500)
 prepare_Hankel!(HankelTest, Ell)
 y = get_y(HankelTest)
