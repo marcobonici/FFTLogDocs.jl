@@ -142,7 +142,9 @@ Given an array *logarithmically spaced* `r` and a function `f` evaluated over th
 want to evaluate the Hankel transform for the multipole values contained in the array `Ell`.
 For instance, let us consider the following Hankel pair
 
-<img src="https://latex.codecogs.com/svg.image?F_{0}(r)=\int_{0}^{\infty}&space;e^{-\frac{1}{2}&space;a^{2}&space;k^{2}}&space;J_{0}(k&space;r)&space;k&space;\mathrm{~d}&space;k=e^{-\frac{r^{2}}{2&space;a^{2}}}" title="F_{0}(r)=\int_{0}^{\infty} e^{-\frac{1}{2} a^{2} k^{2}} J_{0}(k r) k \mathrm{~d} k=e^{-\frac{r^{2}}{2 a^{2}}}" />
+```math
+F_{0}(r)=\int_{0}^{\infty} e^{-\frac{1}{2} a^{2} k^{2}} J_{0}(k r) k \mathrm{~d} k=e^{-\frac{r^{2}}{2 a^{2}}}
+```
 
 Since we know the analytical transform, we can perform a check
 
