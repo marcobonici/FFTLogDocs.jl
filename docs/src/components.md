@@ -3,6 +3,26 @@ using Plots; gr()
 Plots.reset_defaults()
 using FFTLog
 using LaTeXStrings
+using BenchmarkTools
+
+function f(k, a=1)
+    return exp(-k^2.0 *a^2 / 2)
+end
+
+function F(r, a=1)
+    return exp(- r^2.0 / (2. *a^2))
+end
+
+function LogSpaced(min::T, max::T, n::I) where {T,I}
+    logmin = log10(min)
+    logmax = log10(max)
+    logarray = Array(LinRange(logmin, logmax, n))
+    return exp10.(logarray)
+end
+
+k = LogSpaced(10^(-5), 10., 2^10)
+fk = f.(k)
+Ell = Array([0., 2.])
 
 plot_font = "Computer Modern"
 Plots.default(titlefont = (16, plot_font), fontfamily=plot_font,
@@ -16,7 +36,7 @@ Plots.default(titlefont = (16, plot_font), fontfamily=plot_font,
 In this page we are going to give the details about the FFTLog method. For a complete reference, we refer to [Hamilton (2000)](https://arxiv.org/abs/astro-ph/9905191) and [Fang et al. (2019)](https://arxiv.org/abs/1911.11947). This method is particularly useful for logarithmically spaced data and is often employed in Cosmology.
 
 ## Our objective
-We want to perform integrals such a
+We want to perform integrals such as
 
 ```math
 F(y)=\int_{0}^{\infty} \frac{d x}{x} f(x) j_{\ell}(x y)
@@ -115,3 +135,40 @@ and
 2-\ell<\Re(z)<2, & \text { for } \ell \geq 2
 \end{array}\right)
 ```
+
+## Usage
+
+Given an array *logarithmically spaced* `r` and a function `f` evaluated over this array, we
+want to evaluate the Hankel transform for the multipole values contained in the array `Ell`.
+For instance, let us consider the following Hankel pair
+
+<img src="https://latex.codecogs.com/svg.image?F_{0}(r)=\int_{0}^{\infty}&space;e^{-\frac{1}{2}&space;a^{2}&space;k^{2}}&space;J_{0}(k&space;r)&space;k&space;\mathrm{~d}&space;k=e^{-\frac{r^{2}}{2&space;a^{2}}}" title="F_{0}(r)=\int_{0}^{\infty} e^{-\frac{1}{2} a^{2} k^{2}} J_{0}(k r) k \mathrm{~d} k=e^{-\frac{r^{2}}{2 a^{2}}}" />
+
+Since we know the analytical transform, we can perform a check
+
+1. Instantiate an object `HankelPlan`
+```@example tutorial
+HankelTest = FFTLog.HankelPlan(x = k)
+```
+2. Perform some precomputations
+```@example tutorial
+prepare_Hankel!(HankelTest, Ell)
+```
+3. Compute the Hankel transform
+```@example tutorial
+Fy = evaluate_Hankel(HankelTest, fk)
+@benchmark evaluate_Hankel!(Fy, HankelTest, fk)
+```
+4. If needed, the array `y` (the counterpart of the array `r`) can be obtained with
+```@example tutorial
+y = get_y(HankelTest)
+```
+Now, let us compare the numerical and the analytical transforms
+
+![analytical_check](https://user-images.githubusercontent.com/58727599/151894066-f10a5be0-e259-4762-aa48-a5799fda0458.png)
+
+We can also plot the relative difference
+
+![analytical_residuals](https://user-images.githubusercontent.com/58727599/151894064-c620532d-36ce-416b-a592-7612cb95f396.png)
+
+Quite fast and precise, isn't it?
