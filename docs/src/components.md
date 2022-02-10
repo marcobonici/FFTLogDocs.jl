@@ -146,23 +146,14 @@ For instance, let us consider the following Hankel pair
 
 Since we know the analytical transform, we can perform a check
 
-1. Instantiate an object `HankelPlan`
 ```@example tutorial
-HankelTest = FFTLog.HankelPlan(x = k, n_extrap_low = 1500, ν=1.01, n_extrap_high = 1500, n_pad = 500);
-```
-2. Perform some precomputations
-```@example tutorial
-prepare_Hankel!(HankelTest, Ell);
-```
-3. Compute the Hankel transform
-```@example tutorial
+HankelTest = FFTLog.HankelPlan(x = k, n_extrap_low = 1500, ν=1.01, n_extrap_high = 1500, n_pad = 500)
+prepare_Hankel!(HankelTest, Ell)
+y = get_y(HankelTest)
 Fy = evaluate_Hankel(HankelTest, fk)
 @benchmark evaluate_Hankel!(Fy, HankelTest, fk)
 ```
-4. If needed, the array `y` (the counterpart of the array `r`) can be obtained with
-```@example tutorial
-y = get_y(HankelTest);
-```
+
 Now, let us compare the numerical and the analytical transforms
 
 ![analytical_check](https://user-images.githubusercontent.com/58727599/151894066-f10a5be0-e259-4762-aa48-a5799fda0458.png)
