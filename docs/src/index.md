@@ -34,8 +34,28 @@ In our roadmap, we aim to include also:
 
 ## Usage
 
-In the remainder of the documentation, we show how to use FFTLog.jl in details. We also give
-a quick introduction to the theory behind the FFTLog algorithm.
+In the remainder of the documentation, we explain the theory behind the FFTLog algorithm.
+However, using FFTLog.jl is quite easy.
+
+1. Instantiate an object `HankelPlan`
+```julia
+HankelTest = FFTLog.HankelPlan(x = k)
+```
+2. Perform some precomputations
+```julia
+prepare_Hankel!(HankelTest, Ell)
+```
+3. Compute the Hankel transform
+```julia
+Fy = evaluate_Hankel(HankelTest, Pk)
+```
+4. If needed, the array `y` (the counterpart of the array `r`) can be obtained with
+```julia
+y = get_y(HankelTest)
+```
+
+
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
