@@ -16,7 +16,7 @@ makedocs(
     authors  = "Marco Bonici",
     pages = [
         "Home" => "index.md",
-        "THe algorithm" => "algorithm.md"
+        "The algorithm" => "algorithm.md"
     ]
 )
 
