@@ -3,10 +3,11 @@
 FFTLog is a Julia package which performs integrals involving Bessel functions, such as
 
 ```math
-F(y)=\int_{0}^{\infty} \frac{d x}{x} f(x) j_{\ell}(x y)\, ,
+F^{(n)}(y)=\int_{0}^{\infty} \frac{d x}{x} f(x) j^{(n)}_{\ell}(x y)\, ,
 ```
 
-or Hankel transform
+, where ``j^{(n)}_{\ell}`` is the ``n``-th derivative of the spherical Bessel function,
+or Hankel transform such as
 
 ```math
 F(y)=\int_{0}^{\infty} \mathrm{d}x f(x) J_{n}(x y)\, .
@@ -25,11 +26,6 @@ In our roadmap, we aim to include also:
 - Integrals with multiple Bessel functions
 
 
-
-
-### Authors
-
-- Marco Bonici, INAF - Institute of Space Astrophysics and Cosmic Physics (IASF), Milano
 
 
 ## Usage
@@ -64,6 +60,10 @@ Quite easy, isn't it?
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
+### Authors
+
+- Marco Bonici, INAF - Institute of Space Astrophysics and Cosmic Physics (IASF), Milano
 
 ### License
 
